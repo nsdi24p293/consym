@@ -1,0 +1,6 @@
+[submodule "fabric"]
+	path = fabric
+	url = https://github.com/osdi23p228/fabric
+[submodule "tape"]
+	path = tape
+	url = https://github.com/osdi23p228/tape

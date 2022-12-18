@@ -1,30 +1,58 @@
-# HLF-2.2
+# Consym
 
 
-# Build
+
+## Usage
+
+### Choose a git branch
 
 ```bash
-# Original 
-make native
-make orderer-docker peer-docker tools-docker
-# disable VSCC
-make GO_TAGS="vscc" native
-make orderer-docker peer-docker tools-docker
+cd fabric
 
-# disable vscc
-GO_TAGS="vscc"
-# sequential execute at endorser
-GO_TAGS="redis"
-# disable vscc & sequential execute
-GO_TAGS="vscc redis"
+git checkout vanilla
+# git checkout strawman # i.e. fabric-S
+# git checkout consym
 
-# CRDT
-## find . -name "*crdt*"
-GO_TAGS="crdt"
-
-# pre-read
-## find . -name "*prepread*"
-GO_TAGS="prepread"
+cd ..
 ```
 
+### Build images
 
+```bash
+./consym.sh build
+```
+
+Build HLF and tape images
+
+You must properly set these variables in `env.sh` in the root directory.
+
+* BUILD_HLF_IMAGE
+* BUILD_TAPE_IMAGE
+* HLF_TYPE
+* HLF_IMAGE_PREFIX
+
+### Test
+
+```bash
+./consym.sh test
+```
+
+Setup network and test the performance of consym
+
+You must properly set these variables in `env.sh` in the `test` directory.
+
+* DEPLOY_MODE
+
+### Clean
+
+```bash
+./consym.sh clean
+```
+
+Clean the images and/or test result.
+
+You must properly set these variables in `env.sh` in the root directory.
+
+* CLEAN_HLF_PEER_IMAGE
+* CLEAN_TAPE_IMAGE
+* CLEAN_RESULT
